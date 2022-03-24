@@ -113,7 +113,7 @@ void setup() {
 }
 ```
 ### SPI
-This core has two SPI busses. This core are using the HSPI. In certain libraries it is sufficient to set the SPI pins, in others using the HSPI has to be specified:
+This core has two SPI busses. This core is using the HSPI bus. In certain libraries it is sufficient to set the SPI pins, in others using the HSPI has to be specified:
 
 #### Example: LoRa over SPI
 ```C
