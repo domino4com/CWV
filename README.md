@@ -7,21 +7,6 @@ This is the extended core used in the Domino4 eco-system.
 ## Main ChipSet
 The core is built around the [ESP32-WROOM-32](https://www.espressif.com/sites/default/files/documentation/esp32-wroom-32_datasheet_en.pdf) module from Espressif. Future versions of this core will be using newer version of the ESP32 chipset.
 
-## Programming
-
-### Programming in Arduino
-- To program the Domino4 cores using Arduino, install the board files using the doumentation from [Espressif](https://github.com/espressif/arduino-esp32)
-- Please read the notes regarding upload/transfer speed when using the [PPU](https://github.com/domino4com/PPU).
-- Settings:
-  - **Board:** Choose the ```ESP32 Dev Module```
-  - **Speed:** Max 460800 bps
-  - **Port:** Chose the port where your PPU is inserted. If you cannot see the port, the check out your [PPU installation](https://github.com/domino4com/PPU)
-
-### Programming in Python.
-- Download the MicroPython firmware from [micropython.org](https://micropython.org/download/esp32/)
-- It is recommended to download and use the (Mu Editor)(https://codewith.mu/en/download)
-- You can use the Mu Editor to upload the MicroPython Firmware.
-
 ## Pin Usage
 ### Extension Slot
 The 10 pins on the Extension slot are configured on both side, making your extension board reversible.
@@ -102,6 +87,20 @@ The camera uses exactly the same pins as the ESP32-CAM from AI-Thinker
 - Because of pin shortage Pin 5 (see † above), are being used as an output pin for the SD Card Chip Select (CS), and as a Data0 input pin for the camera. 
 
 ## Programming
+
+### Programming in Arduino
+- To program the Domino4 cores using Arduino, install the board files using the doumentation from [Espressif](https://github.com/espressif/arduino-esp32)
+- Please read the notes regarding upload/transfer speed when using the [PPU](https://github.com/domino4com/PPU).
+- Settings:
+  - **Board:** Choose the ```ESP32 Dev Module```
+  - **Speed:** Max 460800 bps
+  - **Port:** Chose the port where your PPU is inserted. If you cannot see the port, the check out your [PPU installation](https://github.com/domino4com/PPU)
+
+### Programming in Python.
+- Download the MicroPython firmware from [micropython.org](https://micropython.org/download/esp32/)
+- It is recommended to download and use the (Mu Editor)(https://codewith.mu/en/download)
+- You can use the Mu Editor to upload the MicroPython Firmware.
+
 
 ### I²C
 I²C's SDA and SCL is not on the standard ESP32's Pin normally used in Arduino. The pins has to be set before the `Wire.begin()` statement like this:
