@@ -113,6 +113,45 @@ void setup() {
   Wire.begin();
 }
 ```
+### SPI
+This core has two SPI busses. This core are using the HSPI. In certain libraries it is sufficient to set the SPI pins, in others using the HSPI has to be specified:
+
+#### Example: LoRa over SPI
+```C
+#include <SPI.h>
+#include <RadioLib.h>
+#define SPI_MISO 12
+#define SPI_MOSI 13
+#define SPI_SCK 14
+#define LORA_CS 15 // NSS
+#define LORA_DIO0 33
+#define LORA_DIO1 -1
+#define LORA_RESET -1
+
+SPIClass mySpi (HSPI);
+SPISettings spiSettings (2000000, MSBFIRST, SPI_MODE0);
+SX1278 radio = new Module (LORA_CS, LORA_DIO0, LORA_RESET, LORA_DIO1, mySpi, spiSettings);
+
+void setup() {
+  mySpi.begin();
+}
+```
+
+#### Example: SD Card over SPI
+```C
+#define SPI_MISO 12
+#define SPI_MOSI 13
+#define SPI_SCK 14
+#define SD_CS 5
+
+void setup() {
+  SPIClass spi = SPIClass(HSPI);
+  spi.begin(SPI_SCK, SPI_MISO, SPI_MOSI, SD_CS);
+  if (!SD.begin(SD_CS, spi)) {
+  // Error code
+  }
+}
+```
 
 ## Troubleshooting
 - If you try to upload code and getting this message ```A fatal error occurred: Timed out waiting for packet content``` or ```A fatal error occurred: Invalid head of packet (0xE0)```, change the transfer speed to 460800 pbs.
