@@ -1,4 +1,4 @@
-<img src="assets/CWV.svg" width=200 align="right">
+<img src="assets/CWS.svg" width=200 align="right">
 
 # CWS Core WiFi Extended
 This is the extended core used in the Domino4 eco-system.
