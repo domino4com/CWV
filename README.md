@@ -2,7 +2,7 @@
 
 # CWS Core WiFi Extended
 This is the extended core used in the Domino4 eco-system.
-This core has 4Mb of PSRAM. Remember to enable the PSRAM in Arduino.
+> This core has 4Mb of PSRAM. Remember to enable the PSRAM in Arduino.
 
 ## Main ChipSet
 The core is built around the [ESP32-WROOM-32](https://www.espressif.com/sites/default/files/documentation/esp32-wroom-32_datasheet_en.pdf) module from Espressif. Future versions of this core will be using newer version of the ESP32 chipset.
@@ -25,18 +25,18 @@ The core is built around the [ESP32-WROOM-32](https://www.espressif.com/sites/de
 ## Pin Usage
 ### Extension Slot
 The 10 pins on the Extension slot are configured on both side, making your extension board reversible.
-| Pins| Function | Group |
-|:-----------------------------:|:----:|:--:|
-| :one:                 | Vcc | Power|
-| :two:                 | MISO | SPI|
-| :three:                    | MOSI | SPI|
-| :four:                  | SCK | SPI|
-| :five:            | IO15  | GPIO|
-| :six: | IO33 | GPIO|
-| :seven:                       | IO2 | GPIO|
-| :eight:                       | SCL | I²C |
-| :nine:                       | SDA | I²C |
-| :keycap_ten:                       | GND | Power|
+| Pins| Function | Group |Lora|
+|:-----------------------------:|:----:|:--:|:--:|
+| :one:                 | Vcc | Power|Vcc
+| :two:                 | MISO | SPI|MISO
+| :three:                    | MOSI | SPI|MOSI
+| :four:                  | SCK | SPI|SCK
+| :five:            | IO15  | GPIO|NSS
+| :six: | IO33 | GPIO|DIO0
+| :seven:                       | IO2 | GPIO| n/a
+| :eight:                       | SCL | I²C | n/a
+| :nine:                       | SDA | I²C | n/a
+| :keycap_ten:                       | GND | Power| GND
 
 ### SD Card
 SD Card is used in 4 Pin SPI configuration.
@@ -45,43 +45,74 @@ SD Card is used in 4 Pin SPI configuration.
 |  MISO |12| 
 |  MOSI |13| 
 |  SCK |14| 
-|  CS |5| 
+|  CS |5†| 
 
 ### Camera
-| Postion | Color | GPIO | On when|
-|:-----------------------------|:----:|:--:|:--:
-|  Top |Red| IO25 | High |
-|  Top |Blue| IO26 | High |
-|  Middle |Yellow| IO19 | High |
-|  Bottom |Red| IO17 | High |
-|  Bottom |Green| IO18 | High |
+The camera uses exactly the same pins as the ESP32-CAM from AI-Thinker
+| Function | GPIO | 
+|:-----------------------------|:----:|
+| PWDN_ |   32
+|RESET |  -1
+| XCLK |    0
+| SIOD  |  26
+| SIOC  |   27
+| Y9  |    35
+| Y8   |    34
+| Y7   |    39
+| Y6  |    36
+|Y5   |   21
+| Y4 |    19
+| Y3   |    18
+| Y2  |     5†
+| VSYNC  |  25
+| HREF   |  23
+| PCLK  |  22
 
 ### CAN Bus Interface
-| Postion | Color | GPIO | On when|
-|:-----------------------------|:----:|:--:|:--:
-|  Vcc |Red| IO25 | High |
-|  Vsrc |Blue| IO26 | High |
-|  GPIO |Yellow| IO19 | High |
-|  CAN H |Red| IO17 | High |
-|  CAN L |Green| IO18 | High |
-|  Control SDA |Red| IO17 | High |
-|  Control SCL |Green| IO18 | High |
-|  Reset |Red| IO25 | High |
-|  Prog |Blue| IO26 | High |
-|  TXD |Yellow| IO19 | High |
-|  RXD |Red| IO17 | High |
-|  SDA |Green| IO18 | High |
-|  SCL |Red| IO17 | High |
-|  GND |Green| IO18 | High |
+10 of the pins are the same as the standard xBus interface, refered to as Intra circuitry pins, all controlled by this core. 4 Pins are used for Extra circuitry communication, controlled by an external core. The Control SDA/SCL are reserved for future use. Power is shared between both Intra- and Extra circutry.
+| Pin | Intra/Extra | 
+|:-----------------------------|:----:|
+|  Vcc |Intra/Extra | 
+|  Vsrc |Intra/Extra| 
+|  GPIO |Intra|
+|  CAN H |Extra| 
+|  CAN L |Extra| 
+|  Control SDA |Extra| 
+|  Control SCL |Extra|
+|:wavy_dash:
+|  Reset |Intra| 
+|  Prog |Intra| 
+|  TXD |Intra| 
+|  RXD |Intra| 
+|  SDA |Intra| 
+|  SCL |Intra| 
+|  GND |Intra/Extra| 
+
 ### Other Pins
 | Function |  GPIO | Notes|
 |:-----------------------------|:----:|:--|
-|  I²C SDA |21| |
-|  I²C SCL |22| |
+|  I²C SDA |26| |
+|  I²C SCL |27| |
 |  Serial TX |1| |
 |  Serial RX |3| |
-|  CAN Bus TX |2| |
-|  CAN Bus RX |32| |
+|  CAN Bus TX |4| |
+|  CAN Bus RX |2| |
+
+### Special pin use:
+- Because of pin shortage Pin 5 (see † above), are being used as an output pin for the SD Card Chip Select (CS), and as a Data0 input pin for the camera. 
+
+## Programming
+
+### I²C
+I²C's SDA and SCL is not on the standard ESP32's Pin normally used in Arduino. The pins has to be set before the `Wire.begin()` statement like this:
+```C
+#define I2C_SDA 26
+#define I2C_SCL 27
+void setup() {
+  Wire.setPins(I2C_SDA, I2C_SCL);
+  Wire.begin();
+}
+```
 
 ## Troubleshooting
 - If you try to upload code and getting this message ```A fatal error occurred: Timed out waiting for packet content``` or ```A fatal error occurred: Invalid head of packet (0xE0)```, change the transfer speed to 460800 pbs.
