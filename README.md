@@ -82,9 +82,11 @@ The camera uses exactly the same pins as the ESP32-CAM from AI-Thinker
 |  Serial RX |3| |
 |  CAN Bus TX |4| |
 |  CAN Bus RX |2| |
+|  Neopixel |18‡ | V4.0+ |
 
 ### Special pin use:
 - Because of pin shortage Pin 5 (see † above), are being used as an output pin for the SD Card Chip Select (CS), and as a Data0 input pin for the camera. 
+- Because of pin shortage Pin 18 (see ‡ above), are being used as an output pin for the Neopixel, and as a Data1 input pin for the camera.
 
 ## Programming
 
