@@ -18,7 +18,7 @@ The 10 pins on the Extension slot are configured on both side, making your exten
 | :four:                  | SCK | SPI|SCK
 | :five:            | IO15  | GPIO|NSS
 | :six: | IO33 | GPIO|DIO0
-| :seven:                       | IO2 | GPIO| n/a
+| :seven:                       | n/a | n/a| n/a
 | :eight:                       | SCL | I²C | n/a
 | :nine:                       | SDA | I²C | n/a
 | :keycap_ten:                       | GND | Power| GND
