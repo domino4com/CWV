@@ -83,6 +83,7 @@ The camera uses exactly the same pins as the ESP32-CAM from AI-Thinker
 |  CAN Bus TX |4| |
 |  CAN Bus RX |2| |
 |  Neopixel |18‡ | V4.0+ |
+|  IO |33 | V4.0+ |
 
 ### Special pin use:
 - Because of pin shortage Pin 5 (see † above), are being used as an output pin for the SD Card Chip Select (CS), and as a Data0 input pin for the camera. 
@@ -153,6 +154,41 @@ void setup() {
   }
 }
 ```
+
+#### Example: Ethernet (and MQTT) over SPI
+```C
+#include <EthernetENC.h>
+#include <SPI.h>
+#include "PubSubClient.h"
+uint8_t mac[6] = {0x00, 0x01, 0x02, 0x03, 0x04, 0x06};
+EthernetClient ethClient;
+PubSubClient mqttClient;
+#define ETHERNET_CS 15
+void setup() {
+  Ethernet.init(ETHERNET_CS);
+  delay(200);
+  if (Ethernet.begin(mac) == 0) {
+    // Fail
+  }
+
+  mqttClient.setClient(ethClient);
+  mqttClient.setServer( MQTT_SERVER, 1883); 
+  reconnect();
+}
+void reconnect() {
+  mqttClient.connect(CLIENTID, USERNAME, PASSWORD);
+}
+void loop() {
+  if (!mqttClient.connected()) {
+    reconnect();
+  } else {
+    mqttClient.publish(TOPIC, MESSAGE);
+  }
+  mqttClient.loop();
+  delay(3000);
+}
+```
+
 
 ## Troubleshooting
 - If you try to upload code and getting this message ```A fatal error occurred: Timed out waiting for packet content``` or ```A fatal error occurred: Invalid head of packet (0xE0)```, change the transfer speed to 460800 pbs.
