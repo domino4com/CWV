@@ -83,11 +83,12 @@ The camera uses exactly the same pins as the ESP32-CAM from AI-Thinker
 |  CAN Bus TX |4| |
 |  CAN Bus RX |2| |
 |  Neopixel |18‡ | V4.0+ |
-|  IO |33 | V4.0+ |
+|  IO |33¶ | V4.0+ |
 
 ### Special pin use:
 - Because of pin shortage Pin 5 (see † above), are being used as an output pin for the SD Card Chip Select (CS), and as a Data0 input pin for the camera. 
 - Because of pin shortage Pin 18 (see ‡ above), are being used as an output pin for the Neopixel, and as a Data1 input pin for the camera.
+- IO33 (see ¶ above) is tied to IO on the xBus as well as IO33 on the Extension slot. That pin could be used, such as with the LoRa extension, which means the pin is not available on the [xBus](https://github.com/domino4com/technology).
 
 ## Programming
 
