@@ -62,8 +62,8 @@ The camera uses exactly the same pins as the ESP32-CAM from AI-Thinker
 |  GPIO |Intra|
 |  CAN H |Extra| 
 |  CAN L |Extra| 
-|  Control SDA |Extra| 
-|  Control SCL |Extra|
+|  CAN Enable |Extra| 
+|  EXT Enable |Extra|
 |:wavy_dash:
 |  Reset |Intra| 
 |  Prog |Intra| 
