@@ -1,6 +1,6 @@
 <img src="assets/CWV.svg" width=200 align="right">
 
-# CWS Core WiFi Extended
+# CWV Core WiFi Extended
 This is the extended core used in the Domino4 eco-system.
 > This core has 4Mb of PSRAM. Remember to enable the PSRAM in Arduino.
 
