@@ -74,16 +74,16 @@ The camera uses exactly the same pins as the ESP32-CAM from AI-Thinker
 |  GND |Intra/Extra| 
 
 ### Other Pins
-| Function |  GPIO | Notes|
-|:-----------------------------|:----:|:--|
-|  I²C SDA |26| |
-|  I²C SCL |27| |
-|  Serial TX |1| |
-|  Serial RX |3| |
-|  CAN Bus TX |4| |
-|  CAN Bus RX |2| |
-|  Neopixel |18‡ | V4.0+ - Suggested library: https://github.com/Freenove/Freenove_WS2812_Lib_for_ESP32|
-|  IO |33¶ | V4.0+ |
+| Function |  GPIO | Notes| Suggested Library |
+|:-----------------------------|:----:|:--| :-- |
+|  I²C SDA |26| ||
+|  I²C SCL |27| ||
+|  Serial TX |1| ||
+|  Serial RX |3| ||
+|  CAN Bus TX |4| |https://github.com/sandeepmistry/arduino-CAN|
+|  CAN Bus RX |2| ||
+|  Neopixel |18‡ | V4.0+|https://github.com/Freenove/Freenove_WS2812_Lib_for_ESP32|
+|  IO |33¶ | V4.0+ ||
 
 ### Special pin use:
 - Because of pin shortage Pin 5 (see † above), are being used as an output pin for the SD Card Chip Select (CS), and as a Data0 input pin for the camera. 
