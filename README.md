@@ -82,7 +82,7 @@ The camera uses exactly the same pins as the ESP32-CAM from AI-Thinker
 |  Serial RX |3| |
 |  CAN Bus TX |4| |
 |  CAN Bus RX |2| |
-|  Neopixel |18‡ | V4.0+ |
+|  Neopixel |18‡ | V4.0+ - Suggested library: https://github.com/Freenove/Freenove_WS2812_Lib_for_ESP32|
 |  IO |33¶ | V4.0+ |
 
 ### Special pin use:
