@@ -94,6 +94,11 @@ The camera uses exactly the same pins as the ESP32-CAM from AI-Thinker
 
 ### Programming in Arduino
 - To program the Domino4 cores using Arduino, install the board files using the doumentation from [Espressif](https://github.com/espressif/arduino-esp32)
+  - Open " "
+  - Insert this line ```https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32_index.json```
+  - Into "Additional Boards Managers URLs"
+  - Open Board Manager
+  - Install ESP32
 - Please read the notes regarding upload/transfer speed when using the [PPU](https://github.com/domino4com/PPU).
 - Settings:
   - **Board:** Choose the ```ESP32 Dev Module```
