@@ -24,7 +24,7 @@ The 10 pins on the Extension slot are configured on both side, making your exten
 | :keycap_ten:                       | GND | Power| GND
 
 ### SD Card
-SD Card is used in 4 Pin SPI configuration.
+SD Card is used in 4 Pin SPI configuration. See [code example](#example-sd-card-over-spi)
 | Pin | GPIO |
 |:-----------------------------|:----:|
 |  MISO |12| 
@@ -33,7 +33,7 @@ SD Card is used in 4 Pin SPI configuration.
 |  CS |5†| 
 
 ### Camera
-The camera uses exactly the same pins as the ESP32-CAM from AI-Thinker
+The camera uses exactly the same pins as the ESP32-CAM from AI-Thinker. See [CWV Camera Repo](https://github.com/domino4com/CWV-Camera)
 | Function | GPIO | 
 |:-----------------------------|:----:|
 | PWDN_ |   32
@@ -76,13 +76,13 @@ The camera uses exactly the same pins as the ESP32-CAM from AI-Thinker
 ### Other Pins
 | Function |  GPIO | Notes| Suggested Library |
 |:-----------------------------|:----:|:--| :-- |
-|  I²C SDA |26| ||
-|  I²C SCL |27| ||
+|  [I²C SDA](#ic) |26| ||
+|  [I²C SCL](#ic)  |27| ||
 |  Serial TX |1| ||
 |  Serial RX |3| ||
 |  CAN Bus TX |4| |[Suggested library](https://github.com/sandeepmistry/arduino-CAN)|
 |  CAN Bus RX |2| ||
-|  Neopixel |18‡ | V4.0+|[Suggested library](https://github.com/Freenove/Freenove_WS2812_Lib_for_ESP32)|
+|  [Neopixel](#neopixel) |18‡ | V4.0+|[Suggested library](https://github.com/Freenove/Freenove_WS2812_Lib_for_ESP32)|
 |  IO |33¶ | V4.0+ ||
 
 ### Special pin use:
