@@ -80,9 +80,9 @@ The camera uses exactly the same pins as the ESP32-CAM from AI-Thinker
 |  I²C SCL |27| ||
 |  Serial TX |1| ||
 |  Serial RX |3| ||
-|  CAN Bus TX |4| |https://github.com/sandeepmistry/arduino-CAN|
+|  CAN Bus TX |4| |[Suggested library](https://github.com/sandeepmistry/arduino-CAN)|
 |  CAN Bus RX |2| ||
-|  Neopixel |18‡ | V4.0+|https://github.com/Freenove/Freenove_WS2812_Lib_for_ESP32|
+|  Neopixel |18‡ | V4.0+|[Suggested library](https://github.com/Freenove/Freenove_WS2812_Lib_for_ESP32)|
 |  IO |33¶ | V4.0+ ||
 
 ### Special pin use:
@@ -110,6 +110,27 @@ The camera uses exactly the same pins as the ESP32-CAM from AI-Thinker
 - It is recommended to download and use the (Mu Editor)(https://codewith.mu/en/download)
 - You can use the Mu Editor to upload the MicroPython Firmware.
 
+### Neopixel
+Install this [library](https://github.com/Freenove/Freenove_WS2812_Lib_for_ESP32)
+and tryout the example below:
+```C
+#include "Freenove_WS2812_Lib_for_ESP32.h"
+
+#define LEDS_COUNT 1
+#define LEDS_PIN 18
+#define CHANNEL 0
+
+Freenove_ESP32_WS2812 strip = Freenove_ESP32_WS2812(LEDS_COUNT, LEDS_PIN, CHANNEL, TYPE_GRB);
+
+void setup() {
+  strip.begin();
+}
+
+void loop() {
+  strip.setLedColor(0,random(255), random(255), random(255));
+  delay(50);
+}
+```
 
 ### I²C
 I²C's SDA and SCL is not on the standard ESP32's Pin normally used in Arduino. The pins has to be set before the `Wire.begin()` statement like this:
