@@ -25,6 +25,7 @@ The 10 pins on the Extension slot are configured on both side, making your exten
 
 ### SD Card
 SD Card is used in 4 Pin SPI configuration. See [code example](#example-sd-card-over-spi)
+> Unlike the [Ai-Thinker ESP32-CAM](http://www.ai-thinker.com/pro_view-24.html), this core cannot use SD-MMC (only stadard SD), which requires DAT0 and DAT1 on the SD Card interface to be connected as well. There is simply not enough pins available on the ESP32.
 | Pin | GPIO |
 |:-----------------------------|:----:|
 |  MISO |12| 
