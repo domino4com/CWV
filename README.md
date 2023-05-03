@@ -47,7 +47,7 @@ The camera uses exactly the same pins as the ESP32-CAM from AI-Thinker. See [CWV
 | Y6  |    36
 |Y5   |   21
 | Y4 |    19
-| Y3   |    18
+| Y3   |    18‡
 | Y2  |     5†
 | VSYNC  |  25
 | HREF   |  23
