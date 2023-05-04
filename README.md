@@ -111,6 +111,7 @@ The camera uses exactly the same pins as the ESP32-CAM from AI-Thinker. See [CWV
 - Download the MicroPython firmware from [micropython.org](https://micropython.org/download/esp32/)
 - It is recommended to download and use the (Mu Editor)(https://codewith.mu/en/download)
 - You can use the Mu Editor to upload the MicroPython Firmware.
+- Check out this [Quick Reference](https://docs.micropython.org/en/latest/esp32/quickref.html)
 
 ### Neopixel
 Install this [library](https://github.com/Freenove/Freenove_WS2812_Lib_for_ESP32)
@@ -136,6 +137,8 @@ void loop() {
 
 ### I²C
 I²C's SDA and SCL is not on the standard ESP32's Pin normally used in Arduino. The pins has to be set before the `Wire.begin()` statement like this:
+
+#### Arduino
 ```C
 #define I2C_SDA 26
 #define I2C_SCL 27
@@ -143,6 +146,12 @@ void setup() {
   Wire.setPins(I2C_SDA, I2C_SCL);
   Wire.begin();
 }
+```
+
+#### MicroPython
+```python
+from machine import Pin, I2C
+i2c = I2C(0, scl=Pin(27), sda=Pin(26), freq=400000)
 ```
 ### SPI
 This core has two SPI busses. This core is using the HSPI bus. In certain libraries it is sufficient to set the SPI pins, in others using the HSPI has to be specified:
@@ -169,6 +178,8 @@ void setup() {
 ```
 
 #### Example: SD Card over SPI
+
+#### Arduino
 ```C
 #define SPI_MISO 12
 #define SPI_MOSI 13
@@ -182,6 +193,12 @@ void setup() {
   // Error code
   }
 }
+```
+
+#### MicroPython
+```python
+import machine, sdcard, os
+sd = sdcard.SDCard(machine.SPI(1), cs=machine.Pin(5))
 ```
 
 #### Example: Ethernet (and MQTT) over SPI
