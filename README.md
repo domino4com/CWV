@@ -114,6 +114,8 @@ The camera uses exactly the same pins as the ESP32-CAM from AI-Thinker. See [CWV
 - Check out this [Quick Reference](https://docs.micropython.org/en/latest/esp32/quickref.html)
 
 ### Neopixel
+
+#### Arduino
 Install this [library](https://github.com/Freenove/Freenove_WS2812_Lib_for_ESP32)
 and tryout the example below:
 ```C
@@ -136,9 +138,10 @@ void loop() {
 ```
 
 ### I²C
-I²C's SDA and SCL is not on the standard ESP32's Pin normally used in Arduino. The pins has to be set before the `Wire.begin()` statement like this:
+I²C's SDA and SCL is not on the standard ESP32's Pin normally used.
 
 #### Arduino
+The pins has to be set before the `Wire.begin()` statement like this:
 ```C
 #define I2C_SDA 26
 #define I2C_SCL 27
@@ -149,6 +152,7 @@ void setup() {
 ```
 
 #### MicroPython
+SCL & SDA specified in MicroPython (notice the reversed order compared to Arduino). In this example also configured for `400 kbit/s Fast Mode FM`:
 ```python
 from machine import Pin, I2C
 i2c = I2C(0, scl=Pin(27), sda=Pin(26), freq=400000)
